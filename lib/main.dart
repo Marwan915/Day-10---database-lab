@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_day10_database/pages/list_page.dart';
+import 'package:flutter_day10_database/pages/signup_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
@@ -16,6 +16,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: ListPage());
+    return const MaterialApp(
+      home: SignupPage(),
+      debugShowCheckedModeBanner: false,
+    );
   }
 }
