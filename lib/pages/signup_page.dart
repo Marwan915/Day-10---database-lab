@@ -8,7 +8,6 @@ import 'package:flutter_day10_database/widgets/text_field_widget.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
-
   @override
   State<SignupPage> createState() => _SignupPageState();
 }
@@ -16,6 +15,7 @@ class SignupPage extends StatefulWidget {
 class _SignupPageState extends State<SignupPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
   @override
   void dispose() {
     emailController.dispose();
@@ -30,22 +30,23 @@ class _SignupPageState extends State<SignupPage> {
         backgroundColor: Colors.red.shade200,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             const Text(
               "Signup",
               style: TextStyle(fontSize: 24),
             ),
-            hight24,
+            height24,
             TextFieldWidget(
-              text: "enter email",
               controller: emailController,
+              text: "enter email",
             ),
-            hight24,
+            height24,
             TextFieldWidget(
-              text: "enter password",
               controller: passwordController,
+              text: "enter password",
+              isPassword: true,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -55,40 +56,40 @@ class _SignupPageState extends State<SignupPage> {
                   onPressed: () {
                     context.pushAndRemoveUntil(const LoginPage());
                   },
-                  child: const Text("Login"),
-                )
+                  child: const Text("login"),
+                ),
               ],
             ),
             ElevatedButton(
-                onPressed: () async {
-                  try {
-                    await Database().signup(
-                      email: emailController.text,
-                      password: passwordController.text,
-                    );
-                    if (context.mounted) {
-                      Navigator.push(
+              onPressed: () async {
+                try {
+                  await Database().signup(
+                    email: emailController.text,
+                    password: passwordController.text,
+                  );
+                  if (context.mounted) {
+                    Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => const ListPage(),
-                        ),
-                      );
-                    }
-                  } catch (e) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(e.toString()),
-                      ),
-                    );
+                        ));
                   }
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue.shade100,
-                ),
-                child: const Text(
-                  "Signup",
-                  style: TextStyle(fontSize: 18),
-                ))
+                } catch (e) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(e.toString()),
+                    ),
+                  );
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue.shade100,
+              ),
+              child: const Text(
+                "signup",
+                style: TextStyle(fontSize: 18),
+              ),
+            )
           ],
         ),
       ),

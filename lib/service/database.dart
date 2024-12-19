@@ -10,7 +10,7 @@ class Database {
     for (var element in response) {
       studentList.add(Student.fromJson(element));
     }
-    print(studentList);
+    await Future.delayed(const Duration(seconds: 2));
     return studentList;
   }
 
@@ -26,6 +26,17 @@ class Database {
       "age": age,
       "salary": salary,
     });
+  }
+
+  deleteUser({required int id}) async {
+    await supabase.from("student").delete().eq("id", id);
+  }
+
+  updateUser(
+      {required String name, required int id, required double salary}) async {
+    await supabase
+        .from("student")
+        .update({"name": name, "salary": salary}).eq("id", id);
   }
 
 //====================================================================================\\

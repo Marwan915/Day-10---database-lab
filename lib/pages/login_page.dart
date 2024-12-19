@@ -11,12 +11,14 @@ class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<LoginPage> createState() => LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  @override
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
@@ -31,22 +33,23 @@ class _LoginPageState extends State<LoginPage> {
         backgroundColor: Colors.blue.shade200,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             const Text(
               "Login",
               style: TextStyle(fontSize: 24),
             ),
-            hight24,
+            height24,
             TextFieldWidget(
-              text: "enter email",
               controller: emailController,
+              text: "enter email",
             ),
-            hight24,
+            height24,
             TextFieldWidget(
-              text: "enter password",
               controller: passwordController,
+              text: "enter password",
+              isPassword: true,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -57,39 +60,39 @@ class _LoginPageState extends State<LoginPage> {
                     context.pushAndRemoveUntil(const SignupPage());
                   },
                   child: const Text("signup"),
-                )
+                ),
               ],
             ),
             ElevatedButton(
-                onPressed: () async {
-                  try {
-                    await Database().login(
-                      email: emailController.text,
-                      password: passwordController.text,
-                    );
-                    if (context.mounted) {
-                      Navigator.push(
+              onPressed: () async {
+                try {
+                  await Database().login(
+                    email: emailController.text,
+                    password: passwordController.text,
+                  );
+                  if (context.mounted) {
+                    Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => const ListPage(),
-                        ),
-                      );
-                    }
-                  } catch (e) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(e.toString()),
-                      ),
-                    );
+                        ));
                   }
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue.shade100,
-                ),
-                child: const Text(
-                  "Login",
-                  style: TextStyle(fontSize: 18),
-                ))
+                } catch (e) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(e.toString()),
+                    ),
+                  );
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue.shade100,
+              ),
+              child: const Text(
+                "Login",
+                style: TextStyle(fontSize: 18),
+              ),
+            )
           ],
         ),
       ),
