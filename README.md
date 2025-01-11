@@ -8,6 +8,3 @@ A new Flutter project.
 ![Screenshot 2024-12-18 152227](https://github.com/user-attachments/assets/b875d24d-23e0-47b6-947c-7ea682a3e53d)
 ![Screenshot 2024-12-18 153509](https://github.com/user-attachments/assets/67f453b1-fbed-4867-9698-6fe21c92976c)
 
-
-
-<img width="223" alt="Screenshot 2025-01-11 132835" src="https://github.com/user-attachments/assets/1230c403-d871-489f-a5d1-81d2f4b6dc39" />
